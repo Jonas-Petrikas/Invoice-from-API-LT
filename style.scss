@@ -44,7 +44,6 @@
         // border: 2px solid black;
         width: 850px;
         border: 2px solid black;
-        margin-bottom: 30px;
 
         .item {
             display: flex;
@@ -91,6 +90,19 @@
         width: 850px;
         row-gap: 10px;
         margin-right: 12px;
+
+        .sum {
+            text-decoration: underline;
+        }
+
+        .data-sum {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .finalSum {
+            text-decoration: underline;
+        }
     }
 }
 

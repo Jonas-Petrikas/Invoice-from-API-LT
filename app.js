@@ -20,8 +20,9 @@ const buyerVAT = document.querySelector('[data-buyer-VAT]');
 const buyerPhone = document.querySelector('[data-buyer-phone]');
 const buyerEmail = document.querySelector('[data-buyer-email]');
 
-const items = document.querySelector('[data-items]')
+const items = document.querySelector('[data-items]');
 
+const sum = document.querySelector('[data-sum]');
 const total = document.querySelector('[data-pre-total]');
 const shippingPrice = document.querySelector('[data-shipping-price]');
 const vatTax = document.querySelector('[data-vat-tax]');
@@ -76,7 +77,7 @@ fetch(url)
                 <div class="item-name">${item.description}</div>
                 <div class="price">${(item.price).toFixed(2)} EUR. </div>
                 <div class="quantity">${item.quantity} vnt. </div>
-                <div class="discount">${nuolaidaEur.toFixed(2)} EUR (${nuolaidaProc.toFixed(2)}%)</div>
+                <div class="discount">${-nuolaidaEur.toFixed(2)} EUR (${-nuolaidaProc.toFixed(2)}%)</div>
                 <div class="total-item">${(item.price * item.quantity - nuolaidaEur).toFixed(2)} EUR
                 </div>
                 `
@@ -84,10 +85,10 @@ fetch(url)
 
             bendraSuma += item.quantity * item.price - nuolaidaEur;
         });
-
-        total.innerHTML = `<b>Suma:</b> ${bendraSuma.toFixed(2)} EUR`
+        sum.innerHTML = `<b>Iš viso:</b> <span class="sum"> ${bendraSuma.toFixed(2)}</span> EUR`
         shippingPrice.innerHTML = `<b>Pristatymo išlaidos:</b> ${data.shippingPrice} EUR`
+        total.innerHTML = `<b>Tarpinė suma:</b> ${(bendraSuma + data.shippingPrice).toFixed(2)} EUR`
         vatTax.innerHTML = `<b>PVM(21%):</b> ${((bendraSuma + data.shippingPrice) * 0.21).toFixed(2)} EUR`
-        totalFinal.innerHTML = `<b>Galutinė kaina:</b> ${((bendraSuma + data.shippingPrice) * 1.21).toFixed(2)} EUR`
+        totalFinal.innerHTML = `<b>Galutinė kaina:</b> <span class="finalSum">${((bendraSuma + data.shippingPrice) * 1.21).toFixed(2)}</span> EUR`
 
     });
